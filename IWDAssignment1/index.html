@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parakai Springs Booking System</title>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- For the icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<!---code with the help of: https://stackoverflow.com/questions/15944245/how-to-open-pdf-on-a-new-tab-->
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html"><i class="fa fa-home"></i> Homepage</a></li>
+        <li><a href="#" onclick="openInNewTab('Part_1_Storyboard_banner.pdf')"><i class="fa fa-file"></i> Part 1 Storyboard</a></li>
+        <li><a href="#" onclick="openInNewTab('Part_2_Storyboard_Sidebar.pdf')"><i class="fa fa-file"></i> Part 2 Storyboard</a></li>
+        <li><a href="#" onclick="openInNewTab('website_wireframes.pdf')"><i class="fa fa-file"></i> Wireframes</a></li>
+    </ul>
+</nav>
+
+<!-- Banner Advertisement -->
+<div class="banner" onclick="window.open('https://www.parakaisprings.co.nz', '_blank')">
+    <img src="./assets/bannerimage1.jpg" class="image" id="image1" alt="Parakai pools water image">
+    <img src="./assets/bannerimage2.jpg" class="image" id="image2" alt="Parakai Pools hot pools image">
+    <div class="text" id="text1">Relax In Our Hot Pools</div>
+    <div class="text" id="text2">Enjoy Our Slides</div>
+    <div class="text" id="text3">Eat Our Nice Food</div>
+    <div class="static-content" id="staticContent">Arishay Reddy 1566531</div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="content-wrapper">
+        <!-- Form Section -->
+        <div class="form-section">
+            <h1 class="booking-title">Parakai Springs Booking System</h1>
+
+            <div class="progress-indicator">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <p id="step-text">Step 1 of 4</p>
+            </div>
+
+
+            <!--coded with help from: https://www.w3schools.com/howto/howto_js_form_steps.asp-->
+            <div class="form-container">
+                <form id="booking-form">
+                    <!-- Step 1: Date and Tickets -->
+                    <div class="form-step active" id="step-1">
+                        <h2>Step 1: Date and Tickets</h2>
+                        <label for="date"><i class="fa fa-calendar"></i> Date of Attendance:</label>
+                        <input type="date" id="date" name="date">
+                        <label for="adults"><i class="fa fa-user"></i> Number of Adults:</label>
+                        <input type="number" id="adults" name="adults" min="1">
+                        <label for="children"><i class="fa fa-child"></i> Number of Children:</label>
+                        <input type="number" id="children" name="children" min="0">
+                    </div>
+
+                    <!-- Step 2: Contact Info -->
+                    <div class="form-step" id="step-2">
+                        <h2>Step 2: Contact Info</h2>
+                        <label for="last-name"><i class="fa fa-user"></i> Last Name:</label>
+                        <input type="text" id="last-name" name="last-name">
+                        <label for="first-name"><i class="fa fa-user"></i> First Name:</label>
+                        <input type="text" id="first-name" name="first-name">
+                        <label for="email"><i class="fa fa-envelope"></i> Email:</label>
+                        <input type="email" id="email" name="email">
+                        <label for="confirm-email"><i class="fa fa-envelope"></i> Confirm Email:</label>
+                        <input type="email" id="confirm-email" name="confirm-email">
+                    </div>
+
+                    <!-- Step 3: Ticket Preferences -->
+                    <div class="form-step" id="step-3">
+                        <h2>Step 3: Ticket Preferences</h2>
+                        <label for="ticket-color"><i class="fa fa-ticket"></i> Ticket Color:</label>
+                        <input type="color" id="ticket-color" name="ticket-color" value="#000">
+                        <label><i class="fa fa-lock"></i> Optional Storage:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="storage" value="Yes"> Yes</label>
+                            <label><input type="radio" name="storage" value="No"> No</label>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirm & Submit -->
+                    <div class="form-step" id="step-4">
+                        <h2>Step 4: Confirm & Submit</h2>
+                        <label><input type="checkbox" id="terms" name="terms"> I agree to the terms and conditions</label>
+                    </div>
+
+                    <!-- Booking Summary -->
+                    <div class="form-step" id="summary">
+                        <h2 id="confirmation-message">Booking Confirmed! Thank you for your booking.</h2>
+                        <h2>Booking Summary</h2>
+                        <p><strong>Date of Attendance:</strong> <span id="summary-date"></span></p>
+                        <p><strong>Number of Adults:</strong> <span id="summary-adults"></span></p>
+                        <p><strong>Number of Children:</strong> <span id="summary-children"></span></p>
+                        <p><strong>Last Name:</strong> <span id="summary-last-name"></span></p>
+                        <p><strong>First Name:</strong> <span id="summary-first-name"></span></p>
+                        <p><strong>Email:</strong> <span id="summary-email"></span></p>
+                        <p><strong>Ticket Color:</strong> <span id="summary-ticket-color"></span></p>
+                        <p><strong>Extra Storage:</strong> <span id="summary-storage"></span></p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <!-- coded with exercise practice week 4-->
+                    <div class="button-group">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        <button type="button" id="submitBtn" onclick="submitBooking()">Submit</button>
+                        <button type="button" id="newBookingBtn" onclick="newBooking()">New Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sidebar Wrapper (Contains Sidebar and Replay Button) -->
+        <div class="sidebar-wrapper">
+            <!-- Sidebar Advertisement -->
+            <div class="sidebar-container">
+                <div class="sidebar-ad">
+                    <div id="ad-frame1" class="ad-frame visible" onclick="window.open('https://www.greatjourneysofnz.co.nz/', '_blank')">
+                        <img src="./assets/sidebarimage1.png" class="ad-image" alt="Train on tracks by mountains">
+                        <div class="ad-text">Experience Scenic Plus</div>
+                        <div class="static-info">Arishay Reddy 1566531</div>
+                    </div>
+                    <div id="ad-frame2" class="ad-frame" onclick="window.open('https://www.greatjourneysofnz.co.nz/', '_blank')">
+                        <img src="./assets/sidebarimage2.jpg" class="ad-image" alt="Senior couple on train journey">
+                        <div class="ad-text">Experience a feast of scenery and regionally inspired dishes</div>
+                        <div class="static-info">Arishay Reddy 1566531</div>
+                    </div>
+                    <div id="ad-frame3" class="ad-frame" onclick="window.open('https://www.greatjourneysofnz.co.nz/', '_blank')">
+                        <img src="./assets/sidebarimage3.png" class="ad-image" alt="Advertising book now for great journeys">
+                        <div class="static-info">Arishay Reddy 1566531</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="replay-button-container">
+                <div id="replay-button">
+                    <i class="fa fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2024 Parakai Springs. All rights reserved.
+</div>
+
+<script src="./script.js"></script>
+
+</body>
+</html>
